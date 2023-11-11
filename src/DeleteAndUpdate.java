@@ -8,7 +8,7 @@ public class DeleteAndUpdate {
     String myName = "root";
     String myPassword ="Obianuju#1";
 
-    public void delete() {
+    public void deleteRecord() {
         try (Connection connect = DriverManager.getConnection(url, myName, myPassword)) {
             String delete = "DELETE FROM students WHERE name = ?";
             PreparedStatement deleteStatement = connect.prepareStatement(delete);
@@ -22,8 +22,10 @@ public class DeleteAndUpdate {
             System.out.println("Student record deleted successfully.");
         } catch (SQLException e) {
             System.out.println("Something went wrong");
-            // Handle the exception as needed (e.g., logging or displaying an error message).
         }
+    }
+    void updateRecord(){
+
     }
 
 }

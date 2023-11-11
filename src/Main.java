@@ -5,8 +5,8 @@ public class Main {
         ProjectOne projectOne = new ProjectOne();
         DeleteAndUpdate deleteName = new DeleteAndUpdate();
         //projectOne.createTable();
-        //projectOne.populateTable();
-        deleteName.delete();
+        projectOne.populateTable();
+        //deleteName.deleteRecord();
 
     }
 }
