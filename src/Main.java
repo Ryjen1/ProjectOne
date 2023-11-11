@@ -3,7 +3,10 @@
 public class Main {
     public static void main(String[] args) {
         ProjectOne projectOne = new ProjectOne();
+        DeleteAndUpdate deleteName = new DeleteAndUpdate();
         //projectOne.createTable();
-        projectOne.populateTable();
+        //projectOne.populateTable();
+        deleteName.delete();
+
     }
 }

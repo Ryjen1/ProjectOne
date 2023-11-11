@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class ProjectOne{
+public class ProjectOne {
     String url = "jdbc:mysql://localhost:3306/project_one";
     String myUser = "root";
     String myPassword = "Obianuju#1";
@@ -10,13 +10,13 @@ public class ProjectOne{
 
     {
         try {
-            connect = DriverManager.getConnection(url,myUser,myPassword);
+            connect = DriverManager.getConnection(url, myUser, myPassword);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void createTable(){
+    public void createTable() {
 
         String creator = "create Table if not exists students(Name text,Email Text, Age int, Location Text, Designation Text)";
         try {
@@ -30,10 +30,11 @@ public class ProjectOne{
 
     int populateTable(){
         int countRows = 0;
-        try {
-            try (Scanner scan = new Scanner(System.in)) {
-                String insert = "insert into table students(name,email,age,location,designation) values(?,?,?,?,?)";
-                PreparedStatement preparedStatement = connect.prepareStatement(insert);
+        try (Connection connect = DriverManager.getConnection(url, myUser, myPassword)) {
+            String insert = "insert into students(name, email, age, location, designation) values(?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connect.prepareStatement(insert);
+            for (int i = 1; i <=10;i++){
+                Scanner scan = new Scanner(System.in);
 
                 System.out.print("What is your name: ");
                 String name = scan.nextLine();
@@ -47,21 +48,24 @@ public class ProjectOne{
                 System.out.print("Enter your designation: ");
                 String designation = scan.nextLine();
 
-                preparedStatement.setString(1,name);
-                preparedStatement.setString(2,email);
-                preparedStatement.setInt(3,age);
-                preparedStatement.setString(4,location);
-                preparedStatement.setString(5,designation);
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, email);
+                preparedStatement.setInt(3, age);
+                preparedStatement.setString(4, location);
+                preparedStatement.setString(5, designation);
 
-                preparedStatement.execute(insert);
+                preparedStatement.execute();
+                countRows++;
+                System.out.println("Student record added successfully");
+
+
             }
 
+
         } catch (SQLException e) {
-            System.out.println("Something went wrong");
+            throw new RuntimeException(e);
         }
         return countRows;
-
-
     }
 
 }
