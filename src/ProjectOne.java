@@ -68,4 +68,12 @@ public class ProjectOne {
         return countRows;
     }
 
+    public static void main(String[] args) {
+        ProjectOne projectOne = new ProjectOne();
+        projectOne.createTable();
+        projectOne.populateTable();
+
+    }
 }
+
+
